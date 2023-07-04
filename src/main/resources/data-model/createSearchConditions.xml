@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext
+        https://nexus.apps.envone.dev.registry.eua.gov.ua/nexus/repository/extensions/com/epam/digital/data/platform/liquibase-ext-schema/latest/liquibase-ext-schema-latest.xsd">
+
+
+    <changeSet author="george" id="searchCondition get_all_certified_persons">
+        <comment>CREATE search condition get_all_certified_persons</comment>
+        <ext:createSearchCondition name="get_all_certified_persons" >
+            <ext:table name="certificate_prof" alias="certificate">
+                <ext:column name="expirationDate" searchType="gt"/>
+            </ext:table>
+            <ext:table name="certificate_person" alias="person">
+                <ext:column name="fullName" alias="name"/>
+                <ext:column name="rnokpp" searchType="notequal"/>
+            </ext:table>
+            <ext:join type="left">
+                <ext:left alias="certificate">
+                </ext:left>
+                <ext:right alias="person">
+                    <ext:column name="fullName"/>
+                </ext:right>
+                <ext:condition logicOperator="and" tableAlias="certificate" columnName="" operator="eq" value="'Р'"/>
+            </ext:join>
+            <ext:where>
+                <ext:condition tableAlias="np" columnName="type" operator="eq" value="'НП'"/>
+            </ext:where>
+        </ext:createSearchCondition>
+    </changeSet>
+
+
+</databaseChangeLog>
