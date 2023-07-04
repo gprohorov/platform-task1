@@ -14,23 +14,22 @@
         <comment>CREATE search condition get_all_certified_persons</comment>
         <ext:createSearchCondition name="get_all_certified_persons" >
             <ext:table name="certificate_prof" alias="certificate">
-                <ext:column name="expirationDate" searchType="gt"/>
+                <ext:column name="certificate_person_id" unique="true"/>
+                <ext:column name="expirationDate" searchType="gt" value="now()"/>
+<!--                <ext:column name="expirationDate" searchType="gt" value="CURRENT_TIMESTAMP"/>-->
             </ext:table>
             <ext:table name="certificate_person" alias="person">
-                <ext:column name="fullName" alias="name"/>
-                <ext:column name="rnokpp" searchType="notequal"/>
+                <ext:column name="fullName" returning="true"/>
+                <ext:column name="rnokpp" searchType="ne" value="null"/>
             </ext:table>
-            <ext:join type="left">
+            <ext:join type="inner">
                 <ext:left alias="certificate">
+                    <ext:column name="certificate_person_id"/>
                 </ext:left>
                 <ext:right alias="person">
-                    <ext:column name="fullName"/>
+                    <ext:column name="certificate_person_id"/>
                 </ext:right>
-                <ext:condition logicOperator="and" tableAlias="certificate" columnName="" operator="eq" value="'Р'"/>
             </ext:join>
-            <ext:where>
-                <ext:condition tableAlias="np" columnName="type" operator="eq" value="'НП'"/>
-            </ext:where>
         </ext:createSearchCondition>
     </changeSet>
 
