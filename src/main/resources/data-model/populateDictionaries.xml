@@ -1,0 +1,10 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext https://nexus.apps.envone.dev.registry.eua.gov.ua/nexus/repository/extensions/com/epam/digital/data/platform/liquibase-ext-schema/latest/liquibase-ext-schema-latest.xsd">
+    <property name="dataLoadPath" value="/tmp/data-load/"/>
+    <changeSet author="registry owner" id="load data to dictionaries">
+        <sql dbms="postgresql" endDelimiter=";" splitStatements="true" stripComments="true">
+            CALL p_load_table_from_csv( 'certificate_scope' ,'${dataLoadPath}dict_certificate_scope.csv' , array['certificate_scope_id','name','abbreviation','description'] , array['certificate_scope_id','name','abbreviation','description'] );
+            CALL p_load_table_from_csv('certificate_level','${dataLoadPath}dict_certificate_level.csv',  array['certificate_level_id','name','abbreviation','description'] , array['certificate_level_id','name','abbreviation','description'] );
+            CALL p_load_table_from_csv('staff_status','${dataLoadPath}dict_status_spivrobitnyka.csv', array['code','name'], array['name']);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

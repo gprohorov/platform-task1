@@ -9,7 +9,6 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext
         https://nexus.apps.envone.dev.registry.eua.gov.ua/nexus/repository/extensions/com/epam/digital/data/platform/liquibase-ext-schema/latest/liquibase-ext-schema-latest.xsd">
 
-
     <changeSet author="george" id="searchCondition get_all_certified_persons">
         <comment>CREATE search condition get_all_certified_persons</comment>
         <ext:createSearchCondition name="get_all_certified_persons" >
@@ -32,6 +31,5 @@
             </ext:join>
         </ext:createSearchCondition>
     </changeSet>
-
 
 </databaseChangeLog>
