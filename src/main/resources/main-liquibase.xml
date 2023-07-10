@@ -8,7 +8,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext
         https://nexus.apps.envone.dev.registry.eua.gov.ua/nexus/repository/extensions/com/epam/digital/data/platform/liquibase-ext-schema/latest/liquibase-ext-schema-latest.xsd">
     <include file="data-model/createTables.xml"/>
-
+    <include file="tmp/data-load/populateDictionaries.xml" context="pub"/>
 </databaseChangeLog>
 
 
