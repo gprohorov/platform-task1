@@ -107,6 +107,10 @@
             <column name="fullName" type="TEXT" remarks="ПIБ">
                 <constraints nullable="false" />
             </column>
+            <column name="PassportNum" type="dn_passport_num" >
+                <constraints nullable="false" />
+            </column>
+
             <column name="settlement" type="TEXT" remarks="Населений пункт">
                 <constraints nullable="false"/>
             </column>

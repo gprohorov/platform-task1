@@ -1,0 +1,52 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext
+        https://nexus.apps.envone.dev.registry.eua.gov.ua/nexus/repository/extensions/com/epam/digital/data/platform/liquibase-ext-schema/latest/liquibase-ext-schema-latest.xsd">
+
+    <changeSet author="g.prokhorov@indevlab.com" id="Add new column to  SCOPES">
+        <ext:historyFlag>"true"</ext:historyFlag>
+        <ext:addColumn  tableName="certificate_scope"
+                        name="createdAt"
+                        type="DATE"
+                        afterColumn="description">
+            <constraints nullable="false" />
+        </ext:addColumn>
+    </changeSet>
+
+    <changeSet author="g.prokhorov@indevlab.com" id="Rename the column in SCOPES">
+        <ext:renameColumn tableName="certificate_scope"
+                          newColumnName="created_at"
+                          oldColumnName="createdAt"
+                          remarks="by owner request"/>
+    </changeSet>
+
+    <changeSet author="g.prokhorov@indevlab.com" id="Modify type of a  column in SCOPES">
+        <ext:modifyDataType tableName="certificate_scope"
+                          columnName="created_at"
+                          newDataType="TEXT"
+                          remarks="by owner request"/>
+    </changeSet>
+
+    <changeSet author="g.prokhorov@indevlab.com" id="Update a value in SCOPES">
+        <ext:update tableName="certificate_scope"
+                    columnName="abbreviation"
+                    value="EN">
+            <ext:where>abbreviation='ENG'</ext:where>
+        </ext:update>
+    </changeSet>
+
+    <changeSet author="g.prokhorov@indevlab.com" id="Insert a record in SCOPES">
+        <ext:insert tableName="certificate_scope">
+            <column name="name" value="Володіння польською мовою"/>
+            <column name="abbreviation" value="PL"/>
+            <column name="description" value="Непрофесійне спрямування"/>
+        </ext:insert>
+    </changeSet>
+
+
+
+</databaseChangeLog>
