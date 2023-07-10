@@ -7,5 +7,64 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext
         https://nexus.apps.envone.dev.registry.eua.gov.ua/nexus/repository/extensions/com/epam/digital/data/platform/liquibase-ext-schema/latest/liquibase-ext-schema-latest.xsd">
 
+    <changeSet author="g.prokhorov@indevlab.com" id="searchCondition get ALL SCOPES">
+        <ext:createSearchCondition name="get_scope_all">
+            <ext:table name="certificate_scope" >
+                <ext:column name="certificate_scope_id"/>
+                <ext:column name="name"/>
+                <ext:column name="abbreviation"/>
+                <ext:column name="description"/>
+            </ext:table>
+        </ext:createSearchCondition>
+    </changeSet>
+
+    <changeSet author="g.prokhorov@indevlab.com" id="searchCondition get the SCOPE by NAME">
+        <ext:createSearchCondition name="get_scope_by_name">
+            <ext:table name="certificate_scope" >
+                <ext:column name="certificate_scope_id"/>
+                <ext:column name="name" sorting="asc" searchType="equal"/>
+                <ext:column name="abbreviation"/>
+                <ext:column name="description"/>
+            </ext:table>
+        </ext:createSearchCondition>
+    </changeSet>
+
+    <changeSet author="g.prokhorov@indevlab.com" id="searchCondition get the SCOPE by NAME LIKE">
+        <ext:createSearchCondition name="get_scope_by_name_like">
+            <ext:table name="certificate_scope" >
+                <ext:column name="certificate_scope_id"/>
+                <ext:column name="name" sorting="asc" searchType="equal"/>
+                <ext:column name="abbreviation"/>
+                <ext:column name="description"/>
+            </ext:table>
+        </ext:createSearchCondition>
+    </changeSet>
+
+
+
+
+    <changeSet author="g.prokhorov@indevlab.com" id="searchCondition get ALL LEVELS">
+        <ext:createSearchCondition name="get_levels_all">
+            <ext:table name="certificate_level" >
+                <ext:column name="certificate_level_id"/>
+                <ext:column name="name"/>
+                <ext:column name="abbreviation"/>
+                <ext:column name="description"/>
+            </ext:table>
+        </ext:createSearchCondition>
+    </changeSet>
+
+
+    <changeSet author="g.prokhorov@indevlab.com" id="searchCondition get the LEVEL by NAME">
+        <ext:createSearchCondition name="get_level_by_name">
+            <ext:table name="certificate_level" >
+                <ext:column name="certificate_level_id"/>
+                <ext:column name="name" sorting="asc" searchType="equal"/>
+                <ext:column name="abbreviation"/>
+                <ext:column name="description"/>
+            </ext:table>
+        </ext:createSearchCondition>
+    </changeSet
+
 
 </databaseChangeLog>

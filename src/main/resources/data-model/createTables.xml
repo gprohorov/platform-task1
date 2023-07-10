@@ -10,7 +10,7 @@
         https://nexus.apps.envone.dev.registry.eua.gov.ua/nexus/repository/extensions/com/epam/digital/data/platform/liquibase-ext-schema/latest/liquibase-ext-schema-latest.xsd">
 
 
-    <changeSet id="table certification scope" author="george">
+    <changeSet id="table certification scope" author="g.prokhorov@indevlab.com">
         <createTable tableName="certificate_scope" remarks="Довідник напрямку сертифiкацiї">
             <ext:historyFlag>"true"</ext:historyFlag>
             <column name="certificate_scope_id" type="NUMERIC" autoIncrement="true">
@@ -30,7 +30,7 @@
         </createTable>
     </changeSet> <!-- of a certification scope -->
 
-    <changeSet id="table certification level" author="george">
+    <changeSet id="table certification level" author="g.prokhorov@indevlab.com">
         <createTable tableName="certificate_level" remarks="Довідник типу (рiвня) сертифiкацiї">
             <ext:historyFlag>"true"</ext:historyFlag>
             <column name="certificate_level_id" type="NUMERIC" autoIncrement="true">
@@ -50,7 +50,7 @@
         </createTable>
     </changeSet> <!-- of a certification level -->
 
-    <changeSet id="table certification center" author="george">
+    <changeSet id="table certification center" author="g.prokhorov@indevlab.com">
         <createTable tableName="certificate_center" remarks="Довідник центру (видавця) сертифiкацiї">
             <ext:historyFlag>"true"</ext:historyFlag>
             <column name="certificate_center_id" type="NUMERIC" autoIncrement="true">
@@ -94,7 +94,7 @@
         </createTable>
     </changeSet> <!-- of a certification center -->
 
-    <changeSet id="table certificated person" author="george">
+    <changeSet id="table certificated person" author="g.prokhorov@indevlab.com">
         <createTable tableName="certificate_person" remarks="Сертифiкована персона">
             <ext:historyFlag>"true"</ext:historyFlag>
             <column name="certificate_person_id"
@@ -120,12 +120,14 @@
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="rnokpp" type="TEXT">
-                <constraints nullable="true" unique="true" />
+<!--                <constraints nullable="true" unique="true" />-->
+                <constraints nullable="false" unique="true" />
             </column>
+<!--            <ext:condition  columnName="rnokpp" operator="ne" value="'null'"> </ext:condition>-->
         </createTable>
     </changeSet> <!-- of a person -->
 
-    <changeSet id="table professional certificate" author="george">
+    <changeSet id="table professional certificate" author="g.prokhorov@indevlab.com">
         <createTable tableName="certificate_prof" remarks="Професiйний сертифiкат">
             <ext:historyFlag>"true"</ext:historyFlag>
             <column name="certificate_prof_id"
