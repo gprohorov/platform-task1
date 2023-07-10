@@ -64,7 +64,7 @@
                 <ext:column name="description"/>
             </ext:table>
         </ext:createSearchCondition>
-    </changeSet
+    </changeSet>
 
 
 </databaseChangeLog>
