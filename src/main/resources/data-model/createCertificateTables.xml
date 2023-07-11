@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext
+        https://nexus.apps.envone.dev.registry.eua.gov.ua/nexus/repository/extensions/com/epam/digital/data/platform/liquibase-ext-schema/latest/liquibase-ext-schema-latest.xsd">
+
+
+    <changeSet id="table certification scope" author="g.prokhorov@indevlab.com">
+        <createTable tableName="certificate_scope" remarks="Довідник напрямку сертифiкацiї">
+            <ext:historyFlag>"true"</ext:historyFlag>
+            <column name="certificate_scope_id" type="NUMERIC" autoIncrement="true">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_certificate_scope_id"/>
+            </column>
+            <column name="name" type="TEXT" remarks="Назва">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="abbreviation" type="TEXT" remarks="Абревiатура">
+                <constraints nullable="true" />
+            </column>
+            <column name="description" type="TEXT" remarks="Пояснення">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet> <!-- of a certification scope -->
+
+    <changeSet id="table certification level" author="g.prokhorov@indevlab.com">
+        <createTable tableName="certificate_level" remarks="Довідник типу (рiвня) сертифiкацiї">
+            <ext:historyFlag>"true"</ext:historyFlag>
+            <column name="certificate_level_id" type="NUMERIC" autoIncrement="true">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_certificate_level_id"/>
+            </column>
+            <column name="name" type="TEXT" remarks="Назва">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="abbreviation" type="TEXT" remarks="Абревiатура">
+                <constraints nullable="true" checkConstraint="CHECK(citizenship = 'UA')"/>
+            </column>
+            <column name="description" type="TEXT" remarks="Пояснення">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet> <!-- of a certification level -->
+
+    <changeSet id="table certification center" author="g.prokhorov@indevlab.com">
+        <createTable tableName="certificate_center" remarks="Довідник центру (видавця) сертифiкацiї">
+            <ext:historyFlag>"true"</ext:historyFlag>
+            <column name="certificate_center_id" type="NUMERIC" autoIncrement="true">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_certificate_center_id"/>
+            </column>
+            <column name="name" type="TEXT" remarks="Назва">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="abbreviation" type="TEXT" remarks="Абревiатура">
+                <constraints nullable="true" />
+            </column>
+            <column name="description" type="TEXT" remarks="Пояснення">
+                <constraints nullable="true"/>
+            </column>
+            <column name="settlement" type="TEXT" remarks="Населений пункт">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="website" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="head_name" type="TEXT" remarks="Керівник закладу">
+                <constraints nullable="false"/>
+            </column>
+            <column name="accreditation_flag" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_of_accreditation" type="DATE">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet> <!-- of a certification center -->
+
+    <changeSet id="table certificated person" author="g.prokhorov@indevlab.com">
+        <createTable tableName="certificate_person" remarks="Сертифiкована персона">
+            <ext:historyFlag>"true"</ext:historyFlag>
+            <column name="certificate_person_id"
+                    type="UUID"
+                    defaultValueComputed="uuid_generate_v4()">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_certificate_person_id"/>
+            </column>
+            <column name="fullName" type="TEXT" remarks="ПIБ">
+                <constraints nullable="false" />
+            </column>
+            <column name="PassportNum" type="dn_passport_num" >
+                <constraints nullable="false" />
+            </column>
+
+            <column name="settlement" type="TEXT" remarks="Населений пункт">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="TEXT">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="email" type="TEXT">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="rnokpp" type="TEXT" remarks="Номер реєстрацыйного свiдоцтва">
+                <!--                <constraints nullable="true" unique="true" />-->
+                <constraints nullable="false" unique="true" />
+            </column>
+            <!--            <ext:condition  columnName="rnokpp" operator="ne" value="'null'"> </ext:condition>-->
+        </createTable>
+    </changeSet> <!-- of a person -->
+
+    <changeSet id="table professional certificate" author="g.prokhorov@indevlab.com">
+        <createTable tableName="certificate_prof" remarks="Професiйний сертифiкат">
+            <ext:historyFlag>"true"</ext:historyFlag>
+            <column name="certificate_prof_id"
+                    type="UUID"
+                    defaultValueComputed="uuid_generate_v4()">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_certificate_prof_id"/>
+            </column>
+            <column name="certificate_person_id" type="UUID">
+                <constraints nullable="false"
+                             foreignKeyName="fk_certificate_person"
+                             referencedTableName="certificate_person"
+                             referencedColumnNames="certificate_person_id"/>
+            </column>
+            <column name="certificate_scope_id" type="NUMERIC">
+                <constraints nullable="false"
+                             foreignKeyName="fk_certificate_scope"
+                             referencedTableName="certificate_scope"
+                             referencedColumnNames="certificate_scope_id"/>
+            </column>
+            <column name="certificate_level_id" type="NUMERIC">
+                <constraints nullable="false"
+                             foreignKeyName="fk_certificate_level"
+                             referencedTableName="certificate_level"
+                             referencedColumnNames="certificate_level_id"/>
+            </column>
+            <column name="certificate_center_id" type="NUMERIC">
+                <constraints nullable="false"
+                             foreignKeyName="fk_certificate_center"
+                             referencedTableName="certificate_center"
+                             referencedColumnNames="certificate_center_id"/>
+            </column>
+            <column name="date_o_issue" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expiration_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet><!-- of a certificate itself -->
+
+</databaseChangeLog>
+
+        <!--  todo: refactoring-->
+
+
