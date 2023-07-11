@@ -42,7 +42,7 @@
                 <constraints nullable="false" unique="true"/>
             </column>
              <column name="abbreviation" type="TEXT" remarks="Абревiатура">
-                <constraints nullable="true" />
+                <constraints nullable="true" checkConstraint="CHECK(citizenship = 'UA')"/>
             </column>
              <column name="description" type="TEXT" remarks="Пояснення">
                 <constraints nullable="true"/>
@@ -176,6 +176,6 @@
 
 </databaseChangeLog>
 
-
+<!--  todo: refactoring-->
 
 

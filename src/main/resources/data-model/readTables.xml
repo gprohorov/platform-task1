@@ -33,7 +33,7 @@
         <ext:createSearchCondition name="get_scope_by_name_like">
             <ext:table name="certificate_scope" >
                 <ext:column name="certificate_scope_id"/>
-                <ext:column name="name" sorting="asc" searchType="equal"/>
+                <ext:column name="name" sorting="asc" searchType="contains"/>
                 <ext:column name="abbreviation"/>
                 <ext:column name="description"/>
             </ext:table>
