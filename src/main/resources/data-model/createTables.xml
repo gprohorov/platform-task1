@@ -123,7 +123,7 @@
             <column name="email" type="TEXT">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="rnokpp" type="TEXT">
+            <column name="rnokpp" type="TEXT" remarks="Номер реєстрацыйного свiдоцтва">
 <!--                <constraints nullable="true" unique="true" />-->
                 <constraints nullable="false" unique="true" />
             </column>
